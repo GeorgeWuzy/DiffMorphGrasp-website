@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DiffMorphGrasp: Diffusion Model with Morphology-Awareness for Cross-Embodiment Dexterous Grasp Generation</title>
+  <title>DiffMorphGrasp: A Diffusion Framework Conditioned on Hand Morphology for Cross-Embodiment Grasp Generation</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -81,7 +81,7 @@
     <div class="hero-body">
       <div class="fixed-container centered" style="--w: 1100px;">
         <h1 class="title">
-          <span style="color: #0070C0;">DiffMorphGrasp</span>: Diffusion Model with <span style="color: #C00000;">Morphology-Awareness</span> for Cross-Embodiment Dexterous Grasp Generation
+          <span style="color: #0070C0;">DiffMorphGrasp</span>: A Diffusion Framework Conditioned on <span style="color: #C00000;">Hand Morphology</span> for Cross-Embodiment Grasp Generation (CoRL 2026)
         </h1>
       </div>
     </div>
@@ -128,7 +128,7 @@
             <span class="icon">
               <i class="fas fa-file-pdf"></i>
             </span>
-            <span>Paper</span>
+            <span>Preprint</span>
           </a>
         </span>
         <span class="link-block">
@@ -160,7 +160,7 @@
     <div class="fixed-container centered">
       <h2 class="title is-5">Abstract</h2>
       <p>
-        Cross-embodiment dexterous grasping aims to generate stable and diverse grasps for robotic hands with heterogeneous kinematic structures. Existing methods are often tailored to specific hand designs and fail to generalize to unseen hand morphologies outside the training distribution. To address these limitations, we propose DiffMorphGrasp, a diffusion-based framework that incorporates hand morphological information into the grasp generation process for unified cross-embodiment grasp synthesis. The proposed approach maps grasps from diverse robotic hands into a unified human-like canonical hand pose representation, providing a common space for learning. Grasp generation is then conditioned on structured representations of hand kinematics, encoded as graphs derived from hand configurations, together with object geometry. In addition, a loss function is introduced that exploits the hierarchical organization of hand kinematics to guide joint-level supervision. Extensive experiments demonstrate that DiffMorphGrasp achieves state-of-the-art performance on existing dexterous grasp benchmarks and exhibits strong zero-shot generalization to previously unseen hand structures, enabling scalable and practical cross-embodiment grasp deployment.
+        As robots are deployed across diverse environments, manipulation tasks require robot hands with different morphologies to satisfy varying task requirements, hardware capabilities, and cost constraints. However, transferring grasping policies learned on one robot hand to another with a different morphology remains a fundamental challenge due to variations in kinematic structures and degrees of freedom across embodiments. To address these limitations, we propose \textbf{DiffMorphGrasp}, the first diffusion-based framework that incorporates hand morphology information into the generative process for cross-embodiment dexterous grasping. The proposed approach maps grasps from diverse robotic hands into a reference hand pose, providing a common space for learning. Grasp generation is then continuously conditioned on structured representations of hand kinematics, encoded as graphs derived from hand configurations, together with object geometry. In addition, we introduce a loss function that computes joint-level errors over the hand kinematic structure to constrain the generated grasps during training. To evaluate DiffMorphGrasp, we construct a new benchmark for assessing grasp generation performance across robot hands with different morphologies. Extensive experiments demonstrate that DiffMorphGrasp achieves strong zero-shot generalization to unseen hand morphologies, enabling scalable cross-embodiment grasp deployment. 
       </p>
     </div>
   </section>
@@ -172,7 +172,7 @@
       <figure>
         <img src="figs/pipeline.png" alt="DiffMorphGrasp Pipeline">
         <figcaption style="text-align: justify;">
-          <span style="color: #4A90E2; font-weight: bold;">(Left)</span> The overview of our proposed DiffMorphGrasp for cross-embodiment dexterous grasp generation. Given an object point cloud and an arbitrary hand morphology extracted from its URDF specification (mapped to a pre-defined canonical hand format), we employ a morphology encoder to extract morphology representations from the hand's joint structure. The hand pose (noised via a diffusion scheduler in training) is embedded through a linear layer, and concatenated with its active joint mask embedding to obtain the hand representation. This representation is then processed through a morphology-aware denoising model, where the iterative process is conditioned on both the morphology representation and the point cloud representation extracted via a Point Transformer. The entire framework is trained using a morphology-aware loss function. <span style="color: #4A90E2; font-weight: bold;">(Right)</span> The structure of our morphology-aware denoising model, which is conditioned on the encoded morphology and the point cloud representations via cross-attention.
+          <span style="color: #4A90E2; font-weight: bold;">(Left)</span> The overview of our proposed DiffMorphGrasp for cross-embodiment dexterous grasp generation. Given an object point cloud and a target hand morphology extracted from its URDF specification (mapped to a pre-defined reference hand pose), we employ a morphology encoder to extract morphology representations from the hand's joint structure. The hand pose (noised via a diffusion scheduler in training) is embedded through a linear layer, and concatenated with its active joint mask embedding to obtain the hand pose representation. This representation is then processed through a morphological denoising model, where the iterative process is conditioned on both the morphology representation and the point cloud representation extracted via a Point Transformer. The entire framework is trained based on a morphological loss function. <span style="color: #4A90E2; font-weight: bold;">(Right)</span> The structure of our morphological denoising model, which is conditioned on the encoded morphology and the point cloud representations via cross-attention.
         </figcaption>
       </figure>
     </div>
